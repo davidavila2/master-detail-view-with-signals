@@ -1,13 +1,11 @@
 export interface Project {
   id: string;
-  title: string;
-  details: string;
-  importanceLevel: number;
+  name: string;
+  description: string;
 }
 
 export const emptyProject: Project = {
   id: '0',
-  title: '',
-  details: '',
-  importanceLevel: 0,
+  name: '',
+  description: '',
 };

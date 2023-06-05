@@ -5,4 +5,8 @@
 </nav>
 <router-outlet></router-outlet>
 
+<ng-container *ngFor="let project of projects()">
+  <p>{{ project.name }}</p>
+</ng-container>
+
 <pre>{{ projects() | json }}</pre>
