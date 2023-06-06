@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@training/data-access": ["data-access/src/index.ts"],
-      "@training/features": ["features/src/index.ts"],
       "@training/ui": ["ui/src/index.ts"]
     }
   },

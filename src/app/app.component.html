@@ -9,4 +9,7 @@
   <p>{{ project.name }}</p>
 </ng-container>
 
+<button (click)="createProject()">Create Project</button>
+<button (click)="deleteProject()">Delete Project</button>
+
 <pre>{{ projects() | json }}</pre>
