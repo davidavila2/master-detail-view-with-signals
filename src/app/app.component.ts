@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ProjectsService } from '@training/data-access';
+import { Project, ProjectsService } from '@training/data-access';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -12,6 +12,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  projectsService = inject(ProjectsService);
-  projects = toSignal(this.projectsService.getAll());
+  projectsService: ProjectsService = inject(ProjectsService);
+  projects: Signal<Project[] | undefined> = toSignal(
+    this.projectsService.getAll()
+  );
 }
