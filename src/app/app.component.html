@@ -3,13 +3,82 @@
     <a class="navbar-brand" href="#">Projects</a>
   </div>
 </nav>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<div class="projects-container w-100">
+  <ng-container *ngIf="isLoaded; else loading">
+    <div class="list-group w-50 m-3">
+      <ng-container *ngFor="let project of projects(); let i = index">
+        <a
+          (click)="selectProject(project)"
+          class="list-group-item list-group-item-action"
+          [ngClass]="{ active: selectedProject()?.id === project.id }"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ project.name }}</h5>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="
+                deleteProject(project); $event.stopImmediatePropagation()
+              "
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+          <small>{{ project.description }}</small>
+        </a>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="w-50 d-flex justify-content-center align-items-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
 
-<ng-container *ngFor="let project of projects()">
-  <p>{{ project.name }}</p>
-</ng-container>
+  <div class="details w-50">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="saveProject(form.value)"
+      class="m-3 suggestion-box-form"
+    >
+      <div class="mb-3 input-group">
+        <span class="input-group-text">name</span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          required
+        />
+      </div>
 
-<button (click)="createProject()">Create Project</button>
-<button (click)="deleteProject()">Delete Project</button>
+      <div class="mb-3 input-group">
+        <span class="input-group-text">Description</span>
+        <textarea
+          formControlName="description"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
 
-<pre>{{ projects() | json }}</pre>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="form.invalid"
+        type="submit"
+      >
+        Submit
+      </button>
+
+      <button
+        type="reset"
+        class="btn btn-primary mx-2"
+        (click)="this.resetForm()"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

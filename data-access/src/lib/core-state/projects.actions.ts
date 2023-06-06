@@ -1,6 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { ProjectsEntity } from './projects.models';
 
+// SELECT PROJECT
+export const projectSelected = createAction(
+  '[Projects Page] Select Project',
+  props<{ project: ProjectsEntity }>()
+);
+
+export const resetSelectedProject = createAction(
+  '[Projects Page] Reset Project',
+)
+
 // LOAD PROJECT
 export const loadProject = createAction(
   '[Projects Page] Load Project',
@@ -17,7 +27,7 @@ export const loadProjectFailure = createAction(
   props<{ error: string }>()
 );
 
-// LOAD PROJECTs
+// LOAD PROJECTS
 export const loadProjects = createAction('[Projects Page] Load Projects');
 
 export const loadProjectsSuccess = createAction(

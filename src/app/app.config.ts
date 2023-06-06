@@ -3,6 +3,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
+import { provideRouterStore } from '@ngrx/router-store';
 import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       fromProjects.projectsReducer
     ),
     provideStore(),
+    provideRouterStore(),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open

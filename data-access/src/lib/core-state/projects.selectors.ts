@@ -16,6 +16,12 @@ export const selectProjectsLoaded = createSelector(
   (state: ProjectsState) => state.loaded
 );
 
+export const selectIsProjectSelected = createSelector(
+  selectProjectsState,
+  (state: ProjectsState) =>
+    state.selectedId === null || state.selectedId === undefined
+);
+
 export const selectProjectsError = createSelector(
   selectProjectsState,
   (state: ProjectsState) => state.error
