@@ -4,16 +4,18 @@ import { Observable } from 'rxjs';
 import { Project } from './project';
 
 const BASE_URL =
-  'https://my-json-server.typicode.com/davidavila2/master-detail-view-with-signals';
+  'https://my-json-server.typicode.com/davidavila2/master-detail-view-with-signals/';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
+  model = 'projects';
+
   constructor(private httpClient: HttpClient) {}
 
   getUrl(): string {
-    return `${BASE_URL}`;
+    return `${BASE_URL}${this.model}`;
   }
 
   getUrlWithId(id: string): string {
