@@ -1,5 +1,19 @@
 {
-  "id": 1,
-  "name": "project title",
-  "description": "description"
+  "projects": [
+    {
+      "id": 1,
+      "name": "project title",
+      "description": "description"
+    },
+    {
+      "id": 2,
+      "name": "project title two",
+      "description": "description"
+    },
+    {
+      "id": 3,
+      "name": "project title three",
+      "description": "description"
+    }
+  ]
 }

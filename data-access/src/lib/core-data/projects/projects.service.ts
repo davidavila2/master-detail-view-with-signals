@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from './project';
 
-const BASE_URL = '../../../../../db.json';
+const BASE_URL =
+  'https://my-json-server.typicode.com/davidavila2/master-detail-view-with-signals';
 
 @Injectable({
   providedIn: 'root',
