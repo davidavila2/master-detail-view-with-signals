@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Signal, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Signal,
+  inject,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProjectsFacade } from 'data-access/src/lib/core-state/projects.facade';
@@ -18,8 +23,9 @@ import { Project } from '@training/data-access';
   selector: 'training-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   form: FormGroup = this.formBuilder.group({
     id: null,
     name: [
@@ -42,18 +48,14 @@ export class AppComponent implements OnInit {
   isProjectSelected = toSignal(this.projectsFacade.isProjectSelected$);
   isLoaded = toSignal(this.projectsFacade.loaded$);
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) {
     this.projectsFacade.loadProjects();
   }
 
   resetForm(): void {
     this.form.reset();
 
-    Object.keys(this.form.controls).forEach((key) => {
-      this.form.get(key)?.setErrors(null);
-    });
+    this.form.updateValueAndValidity();
 
     this.projectsFacade.resetProject();
   }

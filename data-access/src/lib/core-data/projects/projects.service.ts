@@ -3,18 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from './project';
 
-const BASE_URL = 'https://testing-project.herokuapp.com/';
+const BASE_URL = '../../../../../db.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
-  model = 'projects';
-
   constructor(private httpClient: HttpClient) {}
 
   getUrl(): string {
-    return `${BASE_URL}${this.model}`;
+    return `${BASE_URL}`;
   }
 
   getUrlWithId(id: string): string {
